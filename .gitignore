@@ -80,3 +80,30 @@ reports/.idea/
 
 ### Environment Variables
 .env
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+### Maven Flatten Plugin ###
+.flattened-pom.xml
+*-flattened-pom.xml
+!**/src/main/**/.flattened-pom.xml
+!**/src/test/**/.flattened-pom.xml
+
+### Maven Wrapper ###
+.mvn/wrapper/
+!**/src/main/**/.mvn/wrapper/
+!**/src/test/**/.mvn/wrapper/
+
+### Maven Logs ###
+*.log
+*.log.gz
