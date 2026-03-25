@@ -1,0 +1,26 @@
+CLUSTER_ID=$(./bin/kafka-storage.sh random-uuid)
+
+echo "Cluster ID: $CLUSTER_ID"
+
+LOG_ID_1=$(./bin/kafka-storage.sh random-uuid)
+LOG_ID_2=$(./bin/kafka-storage.sh random-uuid)
+LOG_ID_3=$(./bin/kafka-storage.sh random-uuid)
+
+echo "Log IDs: '$LOG_ID_1' '$LOG_ID_2' '$LOG_ID_3'"
+
+rm -rf /tmp/server-1/kraft-combined-logs/meta.properties
+rm -rf /tmp/server-2/kraft-combined-logs/meta.properties
+rm -rf /tmp/server-3/kraft-combined-logs/meta.properties
+
+./bin/kafka-storage.sh format -t "$CLUSTER_ID" -c config/server-1.properties
+./bin/kafka-storage.sh format -t "$CLUSTER_ID" -c config/server-2.properties
+./bin/kafka-storage.sh format -t "$CLUSTER_ID" -c config/server-3.properties
+
+./bin/kafka-server-start.sh config/server-1.properties
+./bin/kafka-server-start.sh config/server-2.properties
+./bin/kafka-server-start.sh config/server-3.properties
+
+./bin/kafka-metadata-quorum.sh --bootstrap-controller localhost:9093 describe --status
+
+./bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+./bin/kafka-topics.sh --describe --bootstrap-server localhost:9092 --exclude-internal
