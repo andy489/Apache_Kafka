@@ -24,7 +24,7 @@
 - [x] A microservice that publishes events
 - [ ] A storage system within Kafka
 
-> **📘 i**  
+> **📘**  
 > In Apache Kafka, a Producer is a microservice, application, or process that publishes (produces) events or messages to Kafka topics. Producers send data to Kafka brokers, which then store the data in topics.
 
 ### Question 4:
