@@ -98,3 +98,59 @@
 
 > **📘**  
 > Kafka guarantees ordering within a partition by assigning sequential offsets to records. A key is an optional attribute of a message that determines which partition the message is sent to. For example, you can use a user ID as a key to ensure all messages for the same user go to the same partition. Within that partition, Kafka guarantees that messages are ordered by their arrival time from the producer.
+
+## Quiz 3: Apache Kafka Broker(s)
+
+### Question 1:
+**What is the primary role of a broker in Apache Kafka?**
+- [x] To store, manage, and distribute messages in the Kafka messaging system
+- [ ] To connect producers and consumers directly
+- [ ] To encrypt and decrypt messages
+
+> **📘**  
+> A Kafka broker is an Apache Kafka component that stores, manages, and distributes messages in the Kafka messaging system. A broker hosts some set of partitions and handles incoming requests to write new events to those partitions or read events from them. A broker also handles replication of partitions between other brokers. This is the main function of a broker, as it enables Kafka to provide high-throughput, low-latency, and fault-tolerant data delivery.
+
+### Question 2:
+**How does Kafka ensure message durability?**
+- [ ] By storing all messages in the system memory
+- [x] By replicating messages across multiple brokers
+- [ ] By compressing messages
+
+> **📘**  
+> Kafka ensures message durability through replication. Each message published to a Kafka topic can be replicated across multiple brokers. This means that even if one broker fails, the data is still available on other brokers. Replication is a key feature in Kafka that ensures high availability and durability of data.
+
+### Question 3:
+**What happens when a Kafka broker goes down?**
+- [ ] All messages in the broker are immediately lost
+- [x] Kafka redistributes the load to other brokers
+- [ ] The entire Kafka cluster becomes inoperable
+
+> **📘**  
+> If a broker in a Kafka cluster is down, Kafka redistributes the workload among the remaining brokers. This includes reassigning the leader for the partitions that were on the failed broker. Kafka's distributed nature allows it to handle failures gracefully and maintain continuous operation.
+
+### Question 4:
+**What is the role of a Leader broker in a Kafka cluster?**
+- [ ] To replicate data and follow instructions from followers
+- [x] To handle all read and write requests for a specific partition
+- [ ] To coordinate the configuration of the Kafka cluster
+
+> **📘**  
+> In Kafka, each partition of a topic has one leader broker. The leader handles all read and write requests for that partition. This centralizes the data management for that partition, ensuring consistency and efficiency in data handling.
+
+### Question 5:
+**What is the role of a Follower broker in a Kafka cluster?**
+- [ ] To handle all read and write requests for the assigned partitions
+- [x] To replicate data from the leader broker for the assigned partitions
+- [ ] To manage the cluster configuration and broker registration
+
+> **📘**  
+> The primary role of a followe broker in a Kafka cluster is to replicate data from the leader broker for the assigned partitions. Follower brokers continually fetch data from the leader for each partition they are assigned to follow. This replication is critical for ensuring data redundancy and high availability. IN case the leader broker fails, one of these followers can be elected as the new leader, ensuring that the partitions remains available and no data is lost.
+
+### Question 6:
+**What happens when a leader broker for a partition becomes unavailable?**
+- [ ] All data in the partition is temporary inaccesible
+- [x] A follower broker is automatically elected as the new leader
+- [ ] The partition is removed from the Kafka cluster
+
+> **📘**  
+> Kafka's high availability design includes the feature of automatic leader election. If the current leader broker for a partition becomes unavailable, one of the follower brokers, which has been replicating the data, is elected as the new leader. This ensures continuous availability and accessibility of the partition.
