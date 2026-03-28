@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'com.appsdeveloperblog.ws'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {}
+
+jar {
+    enabled = true
+    archiveClassifier = ''
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// ./gradlew clean build
+// ./gradlew publishToMavenLocal

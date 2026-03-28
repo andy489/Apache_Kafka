@@ -1,0 +1,24 @@
+server:
+  port: 0 # start at random available port
+
+spring:
+  application:
+    name: EmailNotificationMicroservice
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092,localhost:9094
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: product-created-events
+      properties.spring.json.trusted.packages: com.appsdeveloperblog.ws.core
+      auto-offset-reset: earliest
+  jpa:
+    open-in-view: false
+  datasource:
+    username: andy489
+    password: 1234
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+  h2.console.enabled: true
+
+# http://localhost:55409/h2-console
