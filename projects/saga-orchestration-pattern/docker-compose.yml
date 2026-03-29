@@ -19,7 +19,7 @@ services:
     ports:
       - "9091:9091"
     volumes:
-      - ../kafka-volumes/server-1:/var/lib/kafka/data
+      - ./kafka-volumes/server-1:/var/lib/kafka/data
 
   kafka-2:
     image: 'apache/kafka:4.0.2'
@@ -40,7 +40,7 @@ services:
     ports:
       - "9092:9092"
     volumes:
-      - ../kafka-volumes/server-2:/var/lib/kafka/data
+      - ./kafka-volumes/server-2:/var/lib/kafka/data
 
   kafka-3:
     image: 'apache/kafka:4.0.2'
@@ -61,4 +61,4 @@ services:
     ports:
       - "9093:9093"
     volumes:
-      - ../kafka-volumes/server-3:/var/lib/kafka/data
+      - ./kafka-volumes/server-3:/var/lib/kafka/data
